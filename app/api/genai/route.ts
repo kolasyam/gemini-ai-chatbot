@@ -5,7 +5,8 @@ export async function POST(req: Request, res: Response) {
     console.log(reqBody);
     const prompt=reqBody.data.prompt;
     const genAI=new  GoogleGenerativeAI(process.env.GOOGLE_API_KEY!);
-    const model=genAI.getGenerativeModel({model:"gemini-pro"});
+    //gemini-pro
+    const model=genAI.getGenerativeModel({model:"gemini-1.5-flash"});
     const streamingResponse=await model.generateContentStream(prompt);
     return new StreamingTextResponse(GoogleGenerativeAIStream(streamingResponse))
 }
